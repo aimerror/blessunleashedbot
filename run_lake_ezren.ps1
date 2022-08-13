@@ -1,1 +1,0 @@
-python fishing_bot_v4.py lake_ezren 200 20

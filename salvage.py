@@ -1,47 +1,27 @@
 import time
-from pynput import keyboard
-from pynput.keyboard import Key, Controller
 import sys
+import window_info
+import config
 
 TOTAL_FISH = int(sys.argv[1])
 SALVAGE_SELECTION = int(sys.argv[2])
 
-keyboard_controller = Controller()
+window = window_info.WindowInfo()
+
 time.sleep(2.0)
-keyboard_controller.press('f')
-time.sleep(0.1)
-keyboard_controller.release('f')
-time.sleep(1.0)
-keyboard_controller.press('g')
-time.sleep(0.1)
-keyboard_controller.release('g')
-time.sleep(2.0)
+window.key_click(config.SQUARE, 1.0)
+window.key_click(config.CROSS, 2.0)
 
 steps = int(TOTAL_FISH / SALVAGE_SELECTION)
 
 for current_step in range(steps):
     for slot in range(SALVAGE_SELECTION):
-        keyboard_controller.press('g')
-        time.sleep(0.1)
-        keyboard_controller.release('g')
-        time.sleep(0.2)
-        keyboard_controller.press(Key.down)
-        time.sleep(0.1)
-        keyboard_controller.release(Key.down)
-        time.sleep(0.2)
-    keyboard_controller.press('g')
-    time.sleep(1)
-    keyboard_controller.release('g')
+        window.key_click(config.CROSS, 0.2)
+        window.key_click(config.DPAD_DOWN, 0.2)
+
+    window.key_press(config.CROSS, 1.0)
     time.sleep(0.5)
-    keyboard_controller.press('g')
-    time.sleep(0.1)
-    keyboard_controller.release('g')
-    time.sleep(2.0)
-keyboard_controller.press('t')
-time.sleep(0.1)
-keyboard_controller.release('t')
-time.sleep(0.5)
-keyboard_controller.press('t')
-time.sleep(0.1)
-keyboard_controller.release('t')
-time.sleep(1.0)
+    window.key_click(config.CROSS, 2.0)
+
+window.key_click(config.CIRCLE, 0.5)
+window.key_click(config.CIRCLE, 1.0)

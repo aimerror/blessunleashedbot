@@ -1,1 +1,0 @@
-python fishing_bot_v4.py downstream 200 20
